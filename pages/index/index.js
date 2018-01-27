@@ -3,10 +3,18 @@
 //	获取应用实例
 //
 var wurl				= require( '../../libs/wurl.js' );
+var aesjs				= require( '../../libs/waes.js' );
+
 var CryptoJsAES 		= require('../../libs/crypto-js/aes.js');
 var CryptoJsEncUtf8 	= require('../../libs/crypto-js/enc-utf8.js');
 var CryptoJsEncBase64	= require('../../libs/crypto-js/enc-base64.js');
-var CryptoJsEncHex		= require('../../libs/crypto-js/enc-hex.js');
+var CryptoJsEncHex = require('../../libs/crypto-js/enc-hex.js');
+var CryptoJsHmacSHA256 = require('../../libs/crypto-js/hmac-sha256.js');
+
+//var CryptoJsPbkdf2 		= require('../../libs/crypto-js/pbkdf2.js');
+
+
+// var xxPbkdf2			= require( '../../libs/pbkdf2.js' );
 
 const app		= getApp();
 
@@ -32,6 +40,46 @@ Page({
 		});
 	},
   
+	doWAes : function()
+	{
+		var password = '18811070903';
+		var salt	= '12323232323123123123123123123';
+
+		//console.log('CryptoJsHmacSHA256 = ' + CryptoJsHmacSHA256( password ) );
+
+		// An example 128-bit key (16 bytes * 8 bits/byte = 128 bits)
+		var key = [0, 0, 0, 0, 0xFF, 255, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+		//key = CryptoJsPbkdf2( password, salt, { keySize: 8, iterations: 1000 });
+		//key = xxPbkdf2.pbkdf2Sync( password, salt, 1, 256 / 8, 'sha512' );
+
+		// Convert text to bytes
+		var text = '我爱你中国，我要把美好的青春先给你！';
+		var textBytes = aesjs.utils.utf8.toBytes(text);
+
+		// The counter is optional, and if omitted will begin at 1
+		var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(1));
+		var encryptedBytes = aesCtr.encrypt(textBytes);
+
+		// To print or store the binary data, you may convert it to hex
+		var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+		console.log('encryptedHex = ' + '(SRC TEXT LEN=' + text.length + ')' + encryptedHex );
+		// "a338eda3874ed884b6199150d36f49988c90f5c47fe7792b0cf8c7f77eeffd87
+		//  ea145b73e82aefcf2076f881c88879e4e25b1d7b24ba2788"
+
+		// When ready to decrypt the hex string, convert it back to bytes
+		var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
+
+		// The counter mode of operation maintains internal state, so to
+		// decrypt a new instance must be instantiated.
+		var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(1));
+		var decryptedBytes = aesCtr.decrypt(encryptedBytes);
+
+		// Convert our bytes back into text
+		var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
+		console.log('decryptedText = ' + decryptedText);
+		// "Text may be any length you wish, no padding is required."
+	},
+
 	onLoad: function ( oOptions )
 	{
 		console.log( "##########" );
@@ -40,28 +88,7 @@ Page({
 		console.log("wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
 		console.log("wurl.getCurrentPageUrlWithArgs() = " + wurl.getCurrentPageUrlWithArgs());
 
-		// Encrypt
-		var sMessage	= 'That is my message';
-		var sSecretKey	= 'secret';
-		var ciphertext	= CryptoJsAES.encrypt( sMessage, sSecretKey );
-
-		// Decrypt
-	//	var bytes = CryptoJsAES.decrypt(ciphertext.toString(), sSecretKey );
-	//	var plaintext	= bytes.toString( CryptoJsEncUtf8.Utf8 );
-
-		var encrypted = {};
-		encrypted.ciphertext = ciphertext.toString();
-
-		var decrypted = CryptoJsAES.decrypt
-			(
-				encrypted,
-				sSecretKey,
-				{
-					iv: CryptoJsEncHex.parse( '00000000000000000000000000000000' )
-				}
-			);;
-		console.log('ciphertext = ' + ciphertext.toString() );
-		console.log('decrypted = ' + decrypted.toString(CryptoJsEncUtf8.Utf8) );
+		this.doWAes();
 
 
 		console.log( "##########" );
