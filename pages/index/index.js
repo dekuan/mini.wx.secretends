@@ -4,12 +4,13 @@
 //
 var wurl				= require( '../../libs/wurl.js' );
 var aesjs				= require( '../../libs/waes.js' );
+var wsha256 = require('../../libs/wsha256.js');
 
 var CryptoJsAES 		= require('../../libs/crypto-js/aes.js');
 var CryptoJsEncUtf8 	= require('../../libs/crypto-js/enc-utf8.js');
 var CryptoJsEncBase64	= require('../../libs/crypto-js/enc-base64.js');
 var CryptoJsEncHex = require('../../libs/crypto-js/enc-hex.js');
-var CryptoJsHmacSHA256 = require('../../libs/crypto-js/hmac-sha256.js');
+
 
 //var CryptoJsPbkdf2 		= require('../../libs/crypto-js/pbkdf2.js');
 
@@ -45,12 +46,11 @@ Page({
 		var password = '18811070903';
 		var salt	= '12323232323123123123123123123';
 
-		//console.log('CryptoJsHmacSHA256 = ' + CryptoJsHmacSHA256( password ) );
+		console.log('^^^^^^wsha256 = ' + wsha256.hex( password ) );
 
 		// An example 128-bit key (16 bytes * 8 bits/byte = 128 bits)
 		var key = [0, 0, 0, 0, 0xFF, 255, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
-		//key = CryptoJsPbkdf2( password, salt, { keySize: 8, iterations: 1000 });
-		//key = xxPbkdf2.pbkdf2Sync( password, salt, 1, 256 / 8, 'sha512' );
+		key = wsha256.array( password );
 
 		// Convert text to bytes
 		var text = '我爱你中国，我要把美好的青春先给你！';
