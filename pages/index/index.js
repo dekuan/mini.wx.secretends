@@ -2,8 +2,15 @@
 //	index.js
 //	获取应用实例
 //
-const app	= getApp();
-var wurl	= require( '../../utils/wurl.js' );
+var wurl				= require( '../../libs/wurl.js' );
+var CryptoJsAES 		= require('../../libs/crypto-js/aes.js');
+var CryptoJsEncUtf8 	= require('../../libs/crypto-js/enc-utf8.js');
+var CryptoJsEncBase64	= require('../../libs/crypto-js/enc-base64.js');
+var CryptoJsEncHex		= require('../../libs/crypto-js/enc-hex.js');
+
+const app		= getApp();
+
+
 
 
 Page({
@@ -32,6 +39,30 @@ Page({
 		console.log("wurl.getCurrentPageUrl() = " + wurl.getCurrentPageUrl());
 		console.log("wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
 		console.log("wurl.getCurrentPageUrlWithArgs() = " + wurl.getCurrentPageUrlWithArgs());
+
+		// Encrypt
+		var sMessage	= 'That is my message';
+		var sSecretKey	= 'secret';
+		var ciphertext	= CryptoJsAES.encrypt( sMessage, sSecretKey );
+
+		// Decrypt
+	//	var bytes = CryptoJsAES.decrypt(ciphertext.toString(), sSecretKey );
+	//	var plaintext	= bytes.toString( CryptoJsEncUtf8.Utf8 );
+
+		var encrypted = {};
+		encrypted.ciphertext = ciphertext.toString();
+
+		var decrypted = CryptoJsAES.decrypt
+			(
+				encrypted,
+				sSecretKey,
+				{
+					iv: CryptoJsEncHex.parse( '00000000000000000000000000000000' )
+				}
+			);;
+		console.log('ciphertext = ' + ciphertext.toString() );
+		console.log('decrypted = ' + decrypted.toString(CryptoJsEncUtf8.Utf8) );
+
 
 		console.log( "##########" );
 
