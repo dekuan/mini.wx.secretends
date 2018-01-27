@@ -1,6 +1,10 @@
-//index.js
-//获取应用实例
-const app = getApp()
+//
+//	index.js
+//	获取应用实例
+//
+const app	= getApp();
+var wurl	= require( '../../utils/wurl.js' );
+
 
 Page({
 
@@ -25,6 +29,10 @@ Page({
 	{
 		console.log( "##########" );
 		console.log( oOptions );
+		console.log("wurl.getCurrentPageUrl() = " + wurl.getCurrentPageUrl());
+		console.log("wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
+		console.log("wurl.getCurrentPageUrlWithArgs() = " + wurl.getCurrentPageUrlWithArgs());
+
 		console.log( "##########" );
 
 		if ( app.globalData.userInfo )
