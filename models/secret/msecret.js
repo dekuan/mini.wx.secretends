@@ -41,7 +41,7 @@ class CSecretEnds
 
 	constructor( nVersion )
 	{
-		_initVersion( nVersion );
+		this._initVersion( nVersion );
 	}
 
 	/**
@@ -49,11 +49,11 @@ class CSecretEnds
 	 */
 	get lastErrorId()
 	{
-		return m_nLastErrorId;
+		return this.m_nLastErrorId;
 	}
 	set lastErrorId( nErrorId )
 	{
-		m_nLastErrorId = nErrorId;
+		this.m_nLastErrorId = nErrorId;
 	}
 
 
@@ -77,13 +77,13 @@ class CSecretEnds
 
 		if ( 0 === wlib.getStrLen( sMessage ) )
 		{
-			lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_MESSAGE;
+			this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_MESSAGE;
 			return null;
 		}
 
 		//	...
 		sRet	= null;
-		arrKey	= _createKey( sPassword, nTimestampStart, nExpireInSeconds );
+		arrKey	= this._createKey( sPassword, nTimestampStart, nExpireInSeconds );
 		if ( wlib.isArray( arrKey ) && 32 === arrKey.length )
 		{
 			//	Convert sMessage to bytes
@@ -103,26 +103,26 @@ class CSecretEnds
 						sRet = sEncryptedHex;
 
 						//	...
-						lastErrorId = CSecretEndsErrors.ERROR_SUCCESS;
+						this.lastErrorId = CSecretEndsErrors.ERROR_SUCCESS;
 					}
 					else
 					{
-						lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_ENCRYPTED_BYTES_TO_HEX;
+						this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_ENCRYPTED_BYTES_TO_HEX;
 					}
 				}
 				else
 				{
-					lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_AES_CTR_MODE_ENCRYPT;
+					this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_AES_CTR_MODE_ENCRYPT;
 				}
 			}
 			else
 			{
-				lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_MESSAGE_TO_BYTES;
+				this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_MESSAGE_TO_BYTES;
 			}
 		}
 		else
 		{
-			lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CREATEKEY;
+			this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CREATEKEY;
 		}
 
 		return sRet;
@@ -149,13 +149,13 @@ class CSecretEnds
 
 		if ( 0 === wlib.getStrLen( sEncryptedHex ) )
 		{
-			lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_ENCRYPTED_HEX;
+			this.lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_ENCRYPTED_HEX;
 			return null;
 		}
 
 		//	...
 		sRet	= null;
-		arrKey	= _createKey( sPassword, nTimestampStart, nExpireInSeconds );
+		arrKey	= this._createKey( sPassword, nTimestampStart, nExpireInSeconds );
 		if ( wlib.isArray( arrKey ) && 32 === arrKey.length )
 		{
 			//	When ready to decrypt the hex string, convert it back to bytes
@@ -178,26 +178,26 @@ class CSecretEnds
 						sRet = sDecryptedText;
 
 						//	...
-						lastErrorId = CSecretEndsErrors.ERROR_SUCCESS;
+						this.lastErrorId = CSecretEndsErrors.ERROR_SUCCESS;
 					}
 					else
 					{
-						lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_CONVERT_DECRYPTED_BYTES_TO_TEXT;
+						this.lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_CONVERT_DECRYPTED_BYTES_TO_TEXT;
 					}
 				}
 				else
 				{
-					lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_AES_CTR_MODE_DECRYPT;
+					this.lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_AES_CTR_MODE_DECRYPT;
 				}
 			}
 			else
 			{
-				lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_ENCRYPTED_HEX_TO_BYTES;
+				this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_ENCRYPTED_HEX_TO_BYTES;
 			}
 		}
 		else
 		{
-			lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_CREATEKEY
+			this.lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_CREATEKEY
 		}
 
 		return sRet;
@@ -217,7 +217,7 @@ class CSecretEnds
 		if ( wlib.isNumeric( nVersion ) &&
 			wlib.isObjectWithKeys( m_arrVersionList, nVersion ) )
 		{
-			m_nVersion = nVersion;
+			this.m_nVersion = nVersion;
 		}
 	}
 
@@ -253,7 +253,7 @@ class CSecretEnds
 		sSource	= '';
 
 		sSource += '..........,..........';
-		sSource += new String( m_nVersion );
+		sSource += new String( this.m_nVersion );
 		sSource += ',';
 		sSource	+= new String( sPassword );
 		sSource	+= ',';
@@ -278,3 +278,14 @@ class CSecretEnds
 }
 
 
+
+
+
+/**
+ *	exports
+ */
+module.exports =
+{
+	Errors		: CSecretEndsErrors,
+	CSecretEnds	: CSecretEnds
+};

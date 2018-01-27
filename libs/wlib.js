@@ -15,7 +15,8 @@ function isBool( oObj )
 
 function isArray( oObj )
 {
-	return ( "[object Array]" === Object.prototype.toString.call( oObj ) );
+	return ( "[object Array]" === Object.prototype.toString.call( oObj ) ||
+		"[object Uint8Array]" === Object.prototype.toString.call( oObj ) );
 }
 
 function isObject( oObj )
@@ -117,7 +118,8 @@ function getStrLen( sString, bTrim )
 /**
  *	exports
  */
-module.exports = {
+module.exports =
+{
 	isNumeric: isNumeric,
 	isString: isString,
 	isBool: isBool,

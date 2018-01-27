@@ -2,9 +2,8 @@
 //	index.js
 //	获取应用实例
 //
-var wurl				= require( '../../libs/wurl.js' );
-var aesjs				= require( '../../libs/waes.js' );
-var wsha256 = require('../../libs/wsha256.js');
+var wurl		= require( '../../libs/wurl.js' );
+var msecret		= require( '../../models/secret/msecret.js' );
 
 const app		= getApp();
 
@@ -32,41 +31,17 @@ Page({
   
 	doWAes : function()
 	{
-		var password = '18811070903';
-		var salt	= '12323232323123123123123123123';
+		var sMessage = '❤️我爱你中国，我要把美好的青春先给你！';
+		var sPassword	= '18811070903';
+		var nTimestampStart	= 111;
+		var nExpireInSeconds	= 111;
+		var oMSecret	= new msecret.CSecretEnds();
 
-		console.log('^^^^^^wsha256 = ' + wsha256.hex( password ) );
+		var sEncryptedHex	= oMSecret.encryptSecret( sMessage, sPassword, nTimestampStart, nExpireInSeconds );
+		console.log('encryptedHex = ' + '(SRC TEXT LEN=' + sMessage.length + ')' + sEncryptedHex + ', lastErrorId=' + oMSecret.lastErrorId);
 
-		// An example 128-bit key (16 bytes * 8 bits/byte = 128 bits)
-		var key = [0, 0, 0, 0, 0xFF, 255, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
-		key = wsha256.array( password );
-
-		// Convert text to bytes
-		var text = '我爱你中国，我要把美好的青春先给你！';
-		var textBytes = aesjs.utils.utf8.toBytes(text);
-
-		// The counter is optional, and if omitted will begin at 1
-		var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(1));
-		var encryptedBytes = aesCtr.encrypt(textBytes);
-
-		// To print or store the binary data, you may convert it to hex
-		var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
-		console.log('encryptedHex = ' + '(SRC TEXT LEN=' + text.length + ')' + encryptedHex );
-		// "a338eda3874ed884b6199150d36f49988c90f5c47fe7792b0cf8c7f77eeffd87
-		//  ea145b73e82aefcf2076f881c88879e4e25b1d7b24ba2788"
-
-		// When ready to decrypt the hex string, convert it back to bytes
-		var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
-
-		// The counter mode of operation maintains internal state, so to
-		// decrypt a new instance must be instantiated.
-		var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(1));
-		var decryptedBytes = aesCtr.decrypt(encryptedBytes);
-
-		// Convert our bytes back into text
-		var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
-		console.log('decryptedText = ' + decryptedText);
-		// "Text may be any length you wish, no padding is required."
+		var sDecryptedText	= oMSecret.decryptSecret( sEncryptedHex, sPassword, nTimestampStart, nExpireInSeconds );
+		console.log('decryptedText = ' + sDecryptedText + ', lastErrorId=' + oMSecret.lastErrorId );
 	},
 
 	onLoad: function ( oOptions )
