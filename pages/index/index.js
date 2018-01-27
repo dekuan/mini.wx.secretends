@@ -6,17 +6,6 @@ var wurl				= require( '../../libs/wurl.js' );
 var aesjs				= require( '../../libs/waes.js' );
 var wsha256 = require('../../libs/wsha256.js');
 
-var CryptoJsAES 		= require('../../libs/crypto-js/aes.js');
-var CryptoJsEncUtf8 	= require('../../libs/crypto-js/enc-utf8.js');
-var CryptoJsEncBase64	= require('../../libs/crypto-js/enc-base64.js');
-var CryptoJsEncHex = require('../../libs/crypto-js/enc-hex.js');
-
-
-//var CryptoJsPbkdf2 		= require('../../libs/crypto-js/pbkdf2.js');
-
-
-// var xxPbkdf2			= require( '../../libs/pbkdf2.js' );
-
 const app		= getApp();
 
 

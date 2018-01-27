@@ -624,7 +624,10 @@ var Counter = function (initialValue) {
 	}
 
 	// We allow 0, but anything false-ish uses the default 1
-	if (initialValue !== 0 && !initialValue) { initialValue = 1; }
+	if ( initialValue !== 0 && ! initialValue )
+	{
+		initialValue = 1;
+	}
 
 	if (typeof (initialValue) === 'number') {
 		this._counter = createArray(16);
