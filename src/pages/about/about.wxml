@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="container">
+
+	<!-- product -->
+	<view class="product">
+		<view>
+			<image
+				class="logo" 
+				src="../../resources/images/icon_secret_round_c.png"></image>
+		</view>
+	</view>
+
+
+	<!-- main buttons -->
+	<view class="main">
+		<view class="main-body">
+			<label class="main-body-title">超强加密</label>
+			<text class="main-body-text">采用美国军方和美国联盟政府推荐使用的 AES 256bits 超强加密算法，确保加密数据包的绝对安全性。</text>
+		</view>
+
+		<view class="main-body">
+			<label class="main-body-title">端对端通讯，无服务器转发</label>
+			<text class="main-body-text">每一个纸条只在本地进行强加密，然后，直接发送给微信好友。整个通讯过程无任何服务器参与，保证了加密纸条的绝对安全性。</text>
+		</view>
+
+		<view style="height:100rpx;"></view>
+
+		<view class="main-body">
+			<label class="main-body-title">关于软件</label>
+			<text class="main-body-text">花了一天时间看了小程序文档，发现构架师设计得很棒，对小程序产生了浓厚兴趣，于是继续花了几天时间，便完成了这个小程序。</text>
+		</view>
+
+		<view class="main-body">
+			<label class="main-body-title">关于作者</label>
+			<text class="main-body-text">刘其星，曾就职于 360 公司，对网络安全有浓厚的兴趣与多年的实战工作经验。有兴趣的朋友可以加我 QQ 52471363 一起讨论。</text>
+		</view>
+
+		<view style="height:200rpx;"></view>
+
+	</view>
+
+
+
+</view>

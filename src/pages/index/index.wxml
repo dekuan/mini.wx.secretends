@@ -20,10 +20,10 @@
 		</view>
 		<view class="link-view">
 			<navigator 
-				open-type="redirect" 
+				open-type="switchTab" 
 				hover-class="none" 
 				class="link-view-button" 
-				url="forgetpw/forgetpw">了解安全原理</navigator>
+				url="/pages/about/about">了解安全原理</navigator>
 		</view>
 	</view>
 

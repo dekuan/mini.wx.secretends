@@ -50,6 +50,7 @@
 	font-weight: normal;
 	color: #273b7a;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 

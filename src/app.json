@@ -2,6 +2,7 @@
 	"pages":
 	[
 		"pages/index/index",
+		"pages/about/about",
 		"pages/logs/logs"
 	],
 	"window":
@@ -42,7 +43,7 @@
 				"selectedIconPath": "resources/icons/icon_receive_sel_81x81.png"
 			},
 			{
-				"pagePath": "pages/logs/logs",
+				"pagePath": "pages/about/about",
 				"text": "关于",
 				"iconPath": "resources/icons/icon_about_81x81.png",
 				"selectedIconPath": "resources/icons/icon_about_sel_81x81.png"
