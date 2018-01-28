@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="container">
+
+	<!-- top info -->
+	<view class="topinfo">
+		<view class="topinfo-line">
+			<text class="topinfo-line-text">美国军方使用，超强 AES 256bits 加密</text>
+		</view>	
+		<view class="topinfo-line">
+			<text class="topinfo-line-text">端到端通讯，无服务器中转，绝对安全</text>
+		</view>	
+	</view>
+
+	<!-- product -->
+	<view class="product">
+		<view>
+			<image
+				class="logo" 
+				src="../../resources/images/icon_secret_round_c.png"></image>
+		</view>
+		<view class="link-view">
+			<navigator 
+				open-type="redirect" 
+				hover-class="none" 
+				class="link-view-button" 
+				url="forgetpw/forgetpw">了解安全原理</navigator>
+		</view>
+	</view>
+
+
+	<!-- main buttons -->
+	<view class="main">
+		<view class="link-view">
+			<navigator 
+				open-type="redirect" 
+				hover-class="none" 
+				class="link-view-button" 
+				url="forgetpw/forgetpw">创建加密纸条</navigator>
+		</view>
+	</view>
+
+
+
+</view>
