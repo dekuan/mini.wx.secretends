@@ -12,6 +12,7 @@
   </view>
 
   <view>
+	<button class="weui-btn" type="primary">页面主操作 Normal</button>
     <button open-type="share">发送</button>
   </view>
 
