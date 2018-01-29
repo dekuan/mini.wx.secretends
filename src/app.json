@@ -2,6 +2,7 @@
 	"pages":
 	[
 		"pages/index/index",
+		"pages/create/create",
 		"pages/about/about",
 		"pages/logs/logs"
 	],

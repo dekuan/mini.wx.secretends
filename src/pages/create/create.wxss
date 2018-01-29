@@ -1,0 +1,79 @@
+/**
+ *	product
+ */
+.product
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 100rpx 0 0 0;
+}
+.product .logo
+{
+	width: 260rpx;
+	height: 260rpx;
+	background-size: contain;
+}
+
+
+
+/**
+ *	main and form
+ */
+.main
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20rpx 0 0 0;
+}
+.main .main-form
+{
+	padding: 0 40rpx 60rpx 40rpx;
+}
+.main .main-form .main-form-section
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+
+	padding: 20rpx 30rpx 10rpx 30rpx;
+}
+
+.main .main-form .main-form-label
+{
+	flex: 1;
+
+	color: #273b7a;
+	font-weight: bold;
+	padding: 10rpx 20rpx 10rpx 0;
+}
+.main .main-form .main-form-content
+{
+	flex: 1;
+}
+
+.main .main-form .main-form-textarea
+{
+	height: 120rpx;
+	padding-bottom: 10rpx;
+	border-bottom: 2px solid #273b7a;
+}
+.main .main-form .main-form-textarea-placeholder
+{
+}
+.main .main-form .main-form-input
+{
+	flex: 1;
+	order: 10;
+
+	height: 90rpx;
+	border-bottom: 2px solid #273b7a;
+}
+.main .main-form .main-form-button-submit
+{
+	width: 100%;
+	color: #fff;
+	background-color: #273b7a;
+}

@@ -1,0 +1,59 @@
+<!--index.wxml-->
+<view class="container">
+
+	<!-- main -->
+	<view class="main">
+
+		<form class="main-form" bindsubmit="onFormCreateSubmit">
+
+			<view class="main-form-section">
+				<view class="main-form-label">内容</view>
+				<view class="main-form-content">
+					<textarea 
+						class="main-form-textarea"
+						placeholder-class="main-form-textarea-placeholder"
+						placeholder="请输入纸条内容，最多 128 个字符…" 
+						name="message"
+						maxlength="128"
+						show-confirm-bar="false"
+						auto-focus
+						bindinput="onMessageInput"
+						/>
+				</view>
+			</view>
+
+			<view class="main-form-section">
+				<view class="main-form-label">密码</view>
+				<view class="main-form-content">
+					<input 
+						name="password"
+						class="main-form-input"
+						maxlength="32" 
+						placeholder="请输入密码，最多 32 个字符…"
+						password="true" />
+				</view>
+			</view>
+
+			<view class="main-form-section">
+				<view class="main-form-label">解密提示</view>
+				<view class="main-form-content">
+					<input 
+						name="password-hint"
+						class="main-form-input"
+						maxlength="64" 
+						placeholder="请输入解密提示文字，最多 64 个字符…" />
+				</view>
+			</view>
+
+			<view style="height:50rpx;"></view>
+
+			<view class="main-form-section">
+				<button class="main-form-button-submit" form-type="submit">创建加密纸条</button>
+			</view>	
+
+		</form>
+
+	</view>
+
+
+</view>

@@ -4,7 +4,7 @@
 	<!-- top info -->
 	<view class="topinfo">
 		<view class="topinfo-line">
-			<text class="topinfo-line-text">美国军方使用，超强 AES 256bits 加密</text>
+			<text class="topinfo-line-text">超强 AES 256bits 加密，美国军方使用</text>
 		</view>	
 		<view class="topinfo-line">
 			<text class="topinfo-line-text">端到端通讯，无服务器中转，绝对安全</text>
@@ -32,10 +32,10 @@
 	<view class="main">
 		<view class="link-view">
 			<navigator 
-				open-type="redirect" 
+				open-type="navigate" 
 				hover-class="none" 
 				class="link-view-button" 
-				url="forgetpw/forgetpw">创建加密纸条</navigator>
+				url="/pages/create/create">创建加密纸条</navigator>
 		</view>
 	</view>
 
