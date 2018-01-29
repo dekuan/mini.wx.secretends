@@ -25,6 +25,10 @@ Page({
 	onFormCreateSubmit: function( oEvent )
 	{
 		console.log("onFormCreateSubmit", oEvent);
+
+		wx.navigateTo({
+			url: '/pages/done/done'
+		});
 	}
 
 })

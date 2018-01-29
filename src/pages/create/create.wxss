@@ -62,7 +62,9 @@
 }
 .main .main-form .main-form-textarea-placeholder
 {
+	color: #505b80;
 }
+
 .main .main-form .main-form-input
 {
 	flex: 1;
@@ -71,6 +73,11 @@
 	height: 90rpx;
 	border-bottom: 2px solid #273b7a;
 }
+.main .main-form .main-form-input-placeholder
+{
+	color: #505b80;
+}
+
 .main .main-form .main-form-button-submit
 {
 	width: 100%;

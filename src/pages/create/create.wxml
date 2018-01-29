@@ -28,6 +28,7 @@
 					<input 
 						name="password"
 						class="main-form-input"
+						placeholder-class="main-form-input-placeholder"
 						maxlength="32" 
 						placeholder="请输入密码，最多 32 个字符…"
 						password="true" />
@@ -40,6 +41,7 @@
 					<input 
 						name="password-hint"
 						class="main-form-input"
+						placeholder-class="main-form-input-placeholder"
 						maxlength="64" 
 						placeholder="请输入解密提示文字，最多 64 个字符…" />
 				</view>
@@ -47,13 +49,19 @@
 
 			<view style="height:50rpx;"></view>
 
-			<view class="main-form-section">
-				<button class="main-form-button-submit" form-type="submit">创建加密纸条</button>
-			</view>	
+			<!-- footer buttons -->
+			<view class="weui-footer weui-footer_fixed-bottom">
+				<view class="footer-buttons">
+					<button class="footer-buttons-primary" form-type="submit">创建加密纸条</button>
+				</view>
+				<view style="height:20rpx;"></view>
+			</view>
 
 		</form>
 
 	</view>
+
+
 
 
 </view>
