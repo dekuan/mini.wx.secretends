@@ -140,12 +140,13 @@ Page({
 
 		//	...
 		sRet	= ""
-		+ "s=" + new String( nSecretId ) + "&"
-		+ "e=" + new String( sEncryptedHex ) + "&"
+		+ "v=" + new String( oMSecret.version ) + "&"
+		+ "i=" + new String( nSecretId ) + "&"
+		+ "m=" + new String( sEncryptedHex ) + "&"
+		+ "h=" + new String( oMHint.encryptHint( sPasswordHint ) ) + "&"
 		+ "ts=" + new String( nTimestampStart ) + "&"
 		+ "te=" + new String( nExpireInSeconds ) + "&"
-		+ "h=" + new String( oMHint.encryptHint( sPasswordHint ) ) + "&"
-		+ "t=" + new String( wdatetime.getCurrentTimestamp() )
+		+ "_=" + new String( wdatetime.getCurrentTimestamp() )
 		;
 
 		return sRet;

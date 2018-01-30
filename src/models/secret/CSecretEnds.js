@@ -46,6 +46,20 @@ class CSecretEnds
 		this._initVersion( nVersion );
 	}
 
+
+	/**
+	 *	get/set version
+	 */
+	get version()
+	{
+		return this.m_nVersion;
+	}
+	set version( nVersion )
+	{
+		this._initVersion( nVersion );
+	}
+
+
 	/**
 	 *	get last error id
 	 */
@@ -229,9 +243,9 @@ class CSecretEnds
 		//	set version
 		//
 		if ( wlib.isNumeric( nVersion ) &&
-			wlib.isObjectWithKeys( m_arrVersionList, nVersion ) )
+			wlib.isObjectWithKeys( this.m_arrVersionList, nVersion ) )
 		{
-			this.m_nVersion = nVersion;
+			this.m_nVersion = parseInt( nVersion );
 		}
 	}
 

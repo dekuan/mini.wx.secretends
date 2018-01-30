@@ -62,6 +62,10 @@ function isObjectWithKeys( oObj, vKey )
 		{
 			bRet = oObj.hasOwnProperty( vKey );
 		}
+		else if ( undefined === vKey )
+		{
+			bRet = true;
+		}
 	}
 
 	return bRet;

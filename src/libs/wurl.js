@@ -117,6 +117,36 @@ function getCurrentPageUrlWithArgs()
 	return sRet
 }
 
+/**
+ *	serialize args to query-string
+ */
+function serializeArgs( oArgs )
+{
+	var arrNamedArgs;
+	var sKey;
+
+	if ( ! wlib.isObjectWithKeys( oArgs ) )
+	{
+		return null;
+	}
+
+	//	...
+	arrNamedArgs = [];
+
+	for ( sKey in oArgs )
+	{
+		if ( oArgs.hasOwnProperty( sKey ) )
+		{
+			arrNamedArgs.push
+			(
+				encodeURIComponent( sKey ) + "=" + encodeURIComponent( oArgs[ sKey ] )
+			);
+		}
+	}
+
+	return arrNamedArgs.join( "&" );
+}
+
 
 
 /**
@@ -126,5 +156,6 @@ module.exports =
 {
 	getCurrentPageUrl			: getCurrentPageUrl,
 	getCurrentPageArgs			: getCurrentPageArgs,
-	getCurrentPageUrlWithArgs	: getCurrentPageUrlWithArgs
+	getCurrentPageUrlWithArgs	: getCurrentPageUrlWithArgs,
+	serializeArgs				: serializeArgs
 }

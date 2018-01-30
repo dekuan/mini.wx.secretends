@@ -128,7 +128,7 @@ class CEncryptHint
 		//	set version
 		//
 		if ( wlib.isNumeric( nVersion ) &&
-			wlib.isObjectWithKeys( m_arrVersionList, nVersion ) )
+			wlib.isObjectWithKeys( this.m_arrVersionList, nVersion ) )
 		{
 			this.m_nVersion = nVersion;
 		}
