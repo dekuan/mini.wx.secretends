@@ -39,7 +39,7 @@
 				<view class="main-form-label">解密提示</view>
 				<view class="main-form-content">
 					<input 
-						name="password-hint"
+						name="password_hint"
 						class="main-form-input"
 						placeholder-class="main-form-input-placeholder"
 						maxlength="64" 

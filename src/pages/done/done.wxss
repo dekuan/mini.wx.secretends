@@ -11,43 +11,34 @@
 }
 .envelope .envelope-icon
 {
-	width: 460rpx;
-	height: 300rpx; 
+	width: 420rpx;
+	height: 320rpx; 
 	background-size: cover;
 }
 
 
 
 /**
- *	buttons
+ *	main
  */
-.buttons
+.main
 {
 	padding: 20rpx 0 0 0;
 }
-.buttons .buttons-section
+.main .main-section
 {
 	padding: 20rpx 30rpx 10rpx 30rpx;
 }
-.buttons .main-label
+.main .main-label
 {
 	color: #273b7a;
 	font-weight: bold;
 	padding: 10rpx 20rpx 10rpx 0;
 }
-.buttons .main-text
+.main .main-text
 {
 	color: #273b7a;
 	font-weight: normal;
 	padding: 10rpx 20rpx 10rpx 0;
 }
-
-.buttons .buttons-button-submit
-{
-	width: 100%;
-	color: #fff;
-	background-color: #273b7a;
-}
-
-
 

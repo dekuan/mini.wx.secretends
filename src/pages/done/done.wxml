@@ -12,9 +12,9 @@
 
 
 	<!-- buttons -->
-	<view class="buttons">
+	<view class="main">
 
-		<view class="buttons-section">
+		<view class="main-section">
 			<view class="main-label">这是一封「加密纸条」，解密提示：</view>
 			<view class="main-text">你是一头猪！你是一头猪！你是一头猪！你是一头猪！你是一头猪！你是一头猪！你是一头猪！你是一头猪！</view>
 		</view>
