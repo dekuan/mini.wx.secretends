@@ -3,7 +3,6 @@
 //	获取应用实例
 //
 var wurl		= require( '../../libs/wurl.js' );
-var msecret		= require( '../../models/secret/msecret.js' );
 
 const app		= getApp();
 

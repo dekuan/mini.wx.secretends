@@ -9,7 +9,7 @@ const formatDate = oDate =>
 	const nMonth	= oDate.getMonth() + 1;
 	const nDay		= oDate.getDate();
 
-	return [ nYear, nMonth, nDay ].map( formatNumber ).join( '-' );
+	return [ nYear, nMonth, nDay ].map( _formatNumber ).join( '-' );
 }
 
 const formatTime = oDate =>
@@ -18,15 +18,24 @@ const formatTime = oDate =>
 	const nMinute	= oDate.getMinutes();
 	const nSecond	= oDate.getSeconds();
 
-	return [ nHour, nMinute, nSecond ].map( formatNumber ).join( ':' );
+	return [ nHour, nMinute, nSecond ].map( _formatNumber ).join( ':' );
+}
+
+function getCurrentTimestamp()
+{
+	return ( new Date() ).getTime();
 }
 
 
 
-const formatNumber = nItem =>
+/**
+ *	@ private
+ */
+const _formatNumber = nItem =>
 {
 	return nItem > 9 ? new String( nItem ) : '0' + new String( nItem );
 }
+
 
 
 
@@ -35,7 +44,8 @@ const formatNumber = nItem =>
  */
 module.exports =
 {
-	formatDateTime	: formatDateTime,
-	formatDate		: formatDate,
-	formatTime		: formatTime
+	formatDateTime		: formatDateTime,
+	formatDate			: formatDate,
+	formatTime			: formatTime,
+	getCurrentTimestamp	: getCurrentTimestamp
 };

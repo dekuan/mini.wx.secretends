@@ -12,13 +12,15 @@ class CSecretEndsErrors {
 CSecretEndsErrors.ERROR_SUCCESS	= 0;
 CSecretEndsErrors.ERROR_UNKNOWN	= -1;
 
-CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_MESSAGE						= 1000;
+CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_SECRET_ID					= 1000;
+CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_MESSAGE						= 1001;
 CSecretEndsErrors.ERROR_ENCRYPTSECRET_CREATEKEY							= 1010;
 CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_MESSAGE_TO_BYTES			= 1011;
 CSecretEndsErrors.ERROR_ENCRYPTSECRET_AES_CTR_MODE_ENCRYPT				= 1012;
 CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_ENCRYPTED_BYTES_TO_HEX	= 1013;
 
-CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_ENCRYPTED_HEX 				= 2000;
+CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_SECRET_ID					= 2000;
+CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_ENCRYPTED_HEX 				= 2001;
 CSecretEndsErrors.ERROR_DECRYPTSECRET_CREATEKEY 						= 2010;
 CSecretEndsErrors.ERROR_ENCRYPTSECRET_CONVERT_ENCRYPTED_HEX_TO_BYTES	= 1011;
 CSecretEndsErrors.ERROR_DECRYPTSECRET_AES_CTR_MODE_DECRYPT				= 2012;
@@ -60,13 +62,14 @@ class CSecretEnds
 	/**
 	 *	@ public
 	 *
+	 * 	@param	int		nSecretId
 	 *	@param	string	sMessage
 	 *	@param	string	sPassword
 	 *	@param	int		nTimestampStart
 	 *	@param	int		nExpireInSeconds
 	 *	@return	string	encrypted hex string
 	 */
-	encryptSecret( sMessage, sPassword, nTimestampStart, nExpireInSeconds )
+	encryptSecret( nSecretId, sMessage, sPassword, nTimestampStart, nExpireInSeconds )
 	{
 		var sRet;
 		let arrKey;
@@ -75,6 +78,11 @@ class CSecretEnds
 		let arrEncryptedBytes;
 		let sEncryptedHex;
 
+		if ( ! wlib.isNumeric( nSecretId ) || nSecretId <= 0 )
+		{
+			this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_SECRET_ID;
+			return null;
+		}
 		if ( 0 === wlib.getStrLen( sMessage ) )
 		{
 			this.lastErrorId = CSecretEndsErrors.ERROR_ENCRYPTSECRET_PARAM_MESSAGE;
@@ -83,7 +91,7 @@ class CSecretEnds
 
 		//	...
 		sRet	= null;
-		arrKey	= this._createKey( sPassword, nTimestampStart, nExpireInSeconds );
+		arrKey	= this._createKey( nSecretId, sPassword, nTimestampStart, nExpireInSeconds );
 		if ( wlib.isArray( arrKey ) && 32 === arrKey.length )
 		{
 			//	Convert sMessage to bytes
@@ -132,13 +140,14 @@ class CSecretEnds
 	/**
 	 *	@ public
 	 *
+	 *	@param	int		nSecretId
 	 *	@param	string	sEncryptedHex
 	 *	@param	string	sPassword
 	 *	@param	int		nTimestampStart
 	 *	@param	int		nExpireInSeconds
 	 *	@return	string	decrypted message
 	 */
-	decryptSecret( sEncryptedHex, sPassword, nTimestampStart, nExpireInSeconds )
+	decryptSecret( nSecretId, sEncryptedHex, sPassword, nTimestampStart, nExpireInSeconds )
 	{
 		var sRet;
 		let arrKey;
@@ -147,6 +156,11 @@ class CSecretEnds
 		let arrDecryptedBytes;
 		let sDecryptedText;
 
+		if ( ! wlib.isNumeric( nSecretId ) || nSecretId <= 0 )
+		{
+			this.lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_SECRET_ID;
+			return null;
+		}
 		if ( 0 === wlib.getStrLen( sEncryptedHex ) )
 		{
 			this.lastErrorId = CSecretEndsErrors.ERROR_DECRYPTSECRET_PARAM_ENCRYPTED_HEX;
@@ -155,7 +169,7 @@ class CSecretEnds
 
 		//	...
 		sRet	= null;
-		arrKey	= this._createKey( sPassword, nTimestampStart, nExpireInSeconds );
+		arrKey	= this._createKey( nSecretId, sPassword, nTimestampStart, nExpireInSeconds );
 		if ( wlib.isArray( arrKey ) && 32 === arrKey.length )
 		{
 			//	When ready to decrypt the hex string, convert it back to bytes
@@ -224,17 +238,22 @@ class CSecretEnds
 	/**
 	 *	create a 256-bits key by sha256
 	 *
+	 * 	@param 	int		nSecretId
 	 *	@param	string	sPassword
 	 *	@param	int		nTimestampStart
 	 *	@param	int		nExpireInSeconds
 	 *	@return	array	256-bits key
 	 */
-	_createKey( sPassword, nTimestampStart, nExpireInSeconds )
+	_createKey( nSecretId, sPassword, nTimestampStart, nExpireInSeconds )
 	{
 		var arrRet;
 		let sSource;
 		let arrKey;
 
+		if ( ! wlib.isNumeric( nSecretId ) || nSecretId <= 0 )
+		{
+			return null;
+		}
 		if ( 0 === wlib.getStrLen( sPassword ) )
 		{
 			return null;
@@ -253,6 +272,8 @@ class CSecretEnds
 		sSource	= '';
 
 		sSource += '..........,..........';
+		sSource += new String( nSecretId );
+		sSource += ',';
 		sSource += new String( this.m_nVersion );
 		sSource += ',';
 		sSource	+= new String( sPassword );

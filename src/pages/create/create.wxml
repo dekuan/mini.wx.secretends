@@ -1,6 +1,14 @@
 <!--index.wxml-->
 <view class="container">
 
+	<!-- top toast -->
+    <toptoast
+		id="id-top-toast"
+		message="请输入纸条内容" 
+		bind:cancelEvent="onTopToastCancel">
+    </toptoast>
+
+
 	<!-- main -->
 	<view class="main">
 
@@ -17,6 +25,7 @@
 						maxlength="128"
 						show-confirm-bar="false"
 						auto-focus
+						focus="{{ bFocusMessage }}"
 						bindinput="onMessageInput"
 						/>
 				</view>
@@ -31,7 +40,8 @@
 						placeholder-class="main-form-input-placeholder"
 						maxlength="32" 
 						placeholder="请输入密码，最多 32 个字符…"
-						password="true" />
+						password="true" 
+						focus="{{ bFocussPassword }}"/>
 				</view>
 			</view>
 
@@ -43,7 +53,8 @@
 						class="main-form-input"
 						placeholder-class="main-form-input-placeholder"
 						maxlength="64" 
-						placeholder="请输入解密提示文字，最多 64 个字符…" />
+						placeholder="请输入解密提示文字，最多 64 个字符…" 
+						focus="{{ bFocussPasswordHint }}"/>
 				</view>
 			</view>
 

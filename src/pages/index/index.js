@@ -3,7 +3,6 @@
 //	获取应用实例
 //
 var wurl		= require( '../../libs/wurl.js' );
-var msecret		= require( '../../models/secret/msecret.js' );
 
 const app		= getApp();
 
@@ -28,21 +27,6 @@ Page({
 			url: '../logs/logs'
 		});
 	},
-  
-	doWAes : function()
-	{
-		var sMessage = '❤️我爱你中国，我要把美好的青春先给你！';
-		var sPassword	= '18811070903';
-		var nTimestampStart	= 111;
-		var nExpireInSeconds	= 111;
-		var oMSecret	= new msecret.CSecretEnds();
-
-		var sEncryptedHex	= oMSecret.encryptSecret( sMessage, sPassword, nTimestampStart, nExpireInSeconds );
-		console.log('encryptedHex = ' + '(SRC TEXT LEN=' + sMessage.length + ')' + sEncryptedHex + ', lastErrorId=' + oMSecret.lastErrorId);
-
-		var sDecryptedText	= oMSecret.decryptSecret( sEncryptedHex, sPassword, nTimestampStart, nExpireInSeconds );
-		console.log('decryptedText = ' + sDecryptedText + ', lastErrorId=' + oMSecret.lastErrorId );
-	},
 
 	onLoad: function ( oOptions )
 	{
@@ -51,10 +35,6 @@ Page({
 		console.log("wurl.getCurrentPageUrl() = " + wurl.getCurrentPageUrl());
 		console.log("wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
 		console.log("wurl.getCurrentPageUrlWithArgs() = " + wurl.getCurrentPageUrlWithArgs());
-
-		this.doWAes();
-
-
 		console.log( "##########" );
 
 		if ( app.globalData.userInfo )

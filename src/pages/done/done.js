@@ -14,6 +14,7 @@ Page({
 
 	onLoad: function ( oOptions )
 	{
+		console.log( "DONE / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs() );
 	},
 
 

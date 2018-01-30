@@ -1,0 +1,8 @@
+<!--components/top-toast/top-toast.wxml-->
+<view class="center-block top-toast top-toast-{{ mode }}" hidden="{{ ! show }}">
+    <view 
+		class="top-toast-content"
+		catchtap="_cancelEvent">
+        <view class="text">{{ message }}</view>
+    </view>
+</view>
