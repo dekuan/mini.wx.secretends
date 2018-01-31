@@ -6,11 +6,18 @@ var wurl		= require( '../../libs/wurl.js' );
 var wlib		= require( '../../libs/wlib.js' );
 var msecret		= require( '../../models/secret/CSecretEnds.js' );
 var mhint		= require( '../../models/secret/CEncryptHint.js' );
-
-
-const app		= getApp();
+var msign		= require( '../../models/secret/CSignature.js' );
 
 var m_oTopToast = null;
+const app		= getApp();
+
+/**
+ *	open message status
+ */
+const _CONST_OPEN_MESSAGE_STATUS_EMPTY		= 1;
+const _CONST_OPEN_MESSAGE_STATUS_DECRYPT	= 2;
+const _CONST_OPEN_MESSAGE_STATUS_READ		= 3;
+
 
 
 
@@ -21,10 +28,15 @@ Page({
 
 	data:
 	{
-		haveMessage		: false,
-		sPasswordHint	: '没有提示文字',
+		OPEN_MESSAGE_STATUS_EMPTY	: _CONST_OPEN_MESSAGE_STATUS_EMPTY,
+		OPEN_MESSAGE_STATUS_DECRYPT	: _CONST_OPEN_MESSAGE_STATUS_DECRYPT,
+		OPEN_MESSAGE_STATUS_READ	: _CONST_OPEN_MESSAGE_STATUS_READ,
 
-		bFocussPassword	: false
+		nOpenMessageStatus	: _CONST_OPEN_MESSAGE_STATUS_EMPTY,
+		sPasswordHint		: '没有提示文字',
+		sMessage			: '',
+
+		bFocussPassword		: false
 	},
 
 	onReady: function ()
@@ -32,14 +44,33 @@ Page({
 		//	获得 dialog组件
 		m_oTopToast	= this.selectComponent( "#id-top-toast" );
 
+		console.log("onReady / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
+
 		//	...
+		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
 		this._initPage();
+		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
 	},
 
 	onLoad: function ( oOptions )
 	{
 		//	...
-		console.log( "OPEN / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs() );
+		console.log( "onLoad / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs() );
+
+		//	...
+		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
+		this._initPage();
+		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
+	},
+
+	onShow : function()
+	{
+		console.log("onShow / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
+
+		//	...
+		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
+		this._initPage();
+		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
 	},
 
 
@@ -75,17 +106,10 @@ Page({
 		sDecryptedMessage	= this._decryptMessage( sPassword );
 		if ( wlib.getStrLen( sDecryptedMessage ) > 0 )
 		{
-			wx.showModal({
-				title: '纸条内容',
-				content: sDecryptedMessage,
-				success: function (res) {
-					if (res.confirm) {
-						console.log('用户点击确定')
-					} else if (res.cancel) {
-						console.log('用户点击取消')
-					}
-				}
-			})
+			this.setData({
+				nOpenMessageStatus: this.data.OPEN_MESSAGE_STATUS_READ,
+				sMessage: sDecryptedMessage
+			});
 		}
 		else
 		{
@@ -110,14 +134,14 @@ Page({
 		if ( wlib.isObjectWithKeys( oPageArgs, 'h' ) )
 		{
 			this.setData({
-				haveMessage:true,
+				nOpenMessageStatus : this.data.OPEN_MESSAGE_STATUS_DECRYPT,
 				sPasswordHint: oMHint.decryptSecret( oPageArgs.h )
 			});
 		}
 		else
 		{
 			this.setData({
-				haveMessage: false
+				nOpenMessageStatus: this.data.OPEN_MESSAGE_STATUS_EMPTY
 			});
 		}
 
@@ -132,46 +156,56 @@ Page({
 	{
 		var sRet;
 		let oMSecret;
+		let oMSign;
 
 		let oPageArgs;
 		let nVersion;
 		let nSecretId;
 		let sEncryptedHex;
+		let sSignature;
 		let nTimestampStart;
 		let nExpireInSeconds;
+		let sSignatureCalc;
+		let sMessage;
 
 		//
 		//	...
 		//
 		sRet		= null;
 		oMSecret	= new msecret.CSecretEnds();
+		oMSign		= new msign.CSignature();
 		oPageArgs	= wurl.getCurrentPageArgs();
 
-		if ( ! wlib.isObjectWithKeys( oPageArgs, [ 'v', 'i', 'm', 'h', 'ts', 'te', '_' ] ) )
+		if ( ! wlib.isObjectWithKeys( oPageArgs, [ 'v', 'i', 'm', 's', 'h', 'ts', 'te', '_' ] ) )
 		{
 			m_oTopToast.showTopToast( 'err', '参数错误，无法解密，请联系软件作者' );
-			return false;
+			return null;
 		}
 
 		//	...
 		nVersion			= parseInt( oPageArgs.v );
 		nSecretId			= parseInt( oPageArgs.i );
 		sEncryptedHex		= oPageArgs.m;
+		sSignature			= oPageArgs.s;
 		nTimestampStart		= parseInt( oPageArgs.ts );
 		nExpireInSeconds	= parseInt( oPageArgs.te );
 
 		oMSecret.version	= nVersion;
-		sRet 				= oMSecret.decryptSecret
-			(
-				nSecretId,
-				sEncryptedHex,
-				sPassword,
-				nTimestampStart,
-				nExpireInSeconds
+		sMessage			= oMSecret.decryptSecret(
+				nSecretId, sEncryptedHex, sPassword, nTimestampStart, nExpireInSeconds
 			);
+		sSignatureCalc		= oMSign.createSignature([
+			nSecretId, sMessage, sPassword, nTimestampStart, nExpireInSeconds
+		]);
 
-		console.log("_decryptMessage = ", sRet, "lastErrorId = ", oMSecret.lastErrorId );
+		if ( sSignature === sSignatureCalc )
+		{
+			sRet = sMessage;
+		}
 
+		console.log( "_decryptMessage = ", sRet, "lastErrorId = ", oMSecret.lastErrorId );
+
+		//	...
 		return sRet;
 	}
 

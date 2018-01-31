@@ -1,16 +1,16 @@
 //
-//	index.js
-//	获取应用实例
+//	create.js
 //
 var wurl		= require( '../../libs/wurl.js' );
 var wlib		= require( '../../libs/wlib.js' );
 var wdatetime	= require( '../../libs/wdatetime.js' );
 var msecret		= require( '../../models/secret/CSecretEnds.js' );
 var mhint		= require( '../../models/secret/CEncryptHint.js' );
+var msign		= require( '../../models/secret/CSignature.js' );
 
 const app		= getApp();
-
 var m_oTopToast	= null;
+
 
 
 /**
@@ -114,10 +114,13 @@ Page({
 		var sRet;
 		let oMSecret;
 		let oMHint;
+		let oMSign;
+
 		let nSecretId;
 		let nTimestampStart;
 		let nExpireInSeconds;
 		let sEncryptedHex;
+		let sSignature;
 
 		//
 		//	todo
@@ -125,24 +128,24 @@ Page({
 		//
 		oMSecret			= new msecret.CSecretEnds();
 		oMHint 				= new mhint.CEncryptHint();
+		oMSign				= new msign.CSignature();
 
 		nSecretId			= wdatetime.getCurrentTimestamp();
 		nTimestampStart		= wdatetime.getCurrentTimestamp();
 		nExpireInSeconds	= 0;
-		sEncryptedHex		= oMSecret.encryptSecret
-		(
-			nSecretId,
-			sMessage,
-			sPassword,
-			nTimestampStart,
-			nExpireInSeconds
+		sEncryptedHex		= oMSecret.encryptSecret(
+			nSecretId, sMessage, sPassword, nTimestampStart, nExpireInSeconds
 		);
+		sSignature			= oMSign.createSignature([
+			nSecretId, sMessage, sPassword, nTimestampStart, nExpireInSeconds
+		]);
 
 		//	...
 		sRet	= ""
 		+ "v=" + new String( oMSecret.version ) + "&"
 		+ "i=" + new String( nSecretId ) + "&"
 		+ "m=" + new String( sEncryptedHex ) + "&"
+		+ "s=" + new String( sSignature ) + "&"
 		+ "h=" + new String( oMHint.encryptHint( sPasswordHint ) ) + "&"
 		+ "ts=" + new String( nTimestampStart ) + "&"
 		+ "te=" + new String( nExpireInSeconds ) + "&"
@@ -150,13 +153,6 @@ Page({
 		;
 
 		return sRet;
-		// console.log('encryptedHex = ' + '(SRC TEXT LEN=' + sMessage.length + ')' + sEncryptedHex + ', lastErrorId=' + oMSecret.lastErrorId);
-
-		// var sDecryptedText = oMSecret.decryptSecret(sEncryptedHex, sPassword, nTimestampStart, nExpireInSeconds);
-		// console.log('decryptedText = ' + sDecryptedText + ', lastErrorId=' + oMSecret.lastErrorId);
-
-
-
 	}
 
 })

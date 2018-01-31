@@ -10,7 +10,7 @@
 
 	<!-- envelope -->
 	<view class="envelope">
-		<view wx:if="{{ haveMessage }}">
+		<view wx:if="{{ OPEN_MESSAGE_STATUS_EMPTY !== nOpenMessageStatus }}">
 			<image
 				class="envelope-icon" 
 				src="../../resources/images/envelope.png"></image>
@@ -25,7 +25,9 @@
 	<view class="main">
 
 		<view class="main-body">
-			<view wx:if="{{ haveMessage }}">
+
+			<!-- have message, before decryption -->
+			<view wx:if="{{ OPEN_MESSAGE_STATUS_DECRYPT === nOpenMessageStatus }}">
 				<view class="main-section">
 					<form bindsubmit="onFormOpenSubmit">
 						<view class="decrypt-area">
@@ -53,6 +55,15 @@
 				</view>
 			</view>
 
+			<!-- have message, after decryption successfully -->
+			<view wx:elif="{{ OPEN_MESSAGE_STATUS_READ === nOpenMessageStatus }}">
+				<view class="main-section">
+					<view class="main-label">这张「加密纸条」的内容是：</view>
+					<view class="main-text">{{ sMessage }}</view>
+				</view>
+			</view>
+
+			<!-- no message -->
 			<view wx:else>
 				<view class="main-section">
 					<view class="main-empty">感谢使用超强加密的「加密纸条」，相信我对你真的有用！</view>

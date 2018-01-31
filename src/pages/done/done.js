@@ -53,7 +53,7 @@ Page({
 		//	...
 		oPageArgs	= wurl.getCurrentPageArgs();
 
-		if ( ! wlib.isObjectWithKeys( oPageArgs, [ 'v', 'i', 'm', 'h', 'ts', 'te', '_' ] ) )
+		if ( ! wlib.isObjectWithKeys( oPageArgs, [ 'v', 'i', 'm', 's', 'h', 'ts', 'te', '_' ] ) )
 		{
 			m_oTopToast.showTopToast( 'err', '参数错误，无法发送给朋友，请联系软件作者' );
 			return false;
@@ -63,7 +63,7 @@ Page({
 		sShareUrl	= "/pages/open/open?" + wurl.serializeArgs( oPageArgs );
 
 		return {
-			title: '收到一封「加密纸条」',
+			title: '收到一张「加密纸条」',
 			path: sShareUrl,
 			success: function( oRes )
 			{
