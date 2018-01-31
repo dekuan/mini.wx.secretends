@@ -8,6 +8,13 @@
 		bind:cancelEvent="onTopToastCancel">
     </toptoast>
 
+	<!-- happy loading -->
+	<happyloading
+		id="id-happy-loading"
+		src="../../resources/images/icon_secret_round_c.png">
+	</happyloading>
+
+
 	<!-- envelope -->
 	<view class="envelope">
 		<view wx:if="{{ OPEN_MESSAGE_STATUS_EMPTY !== nOpenMessageStatus }}">
@@ -16,7 +23,7 @@
 				src="../../resources/images/envelope.png"></image>
 		</view>
 		<view wx:else>
-			<view class="envelope-empty">没有消息！</view>
+			<view class="envelope-empty">没有消息</view>
 		</view>
 	</view>
 
@@ -44,7 +51,10 @@
 							</view>
 							<view class="decrypt-space-area"></view>
 							<view class="decrypt-button-area">
-								<button class="decrypt-button-item" form-type="submit">解密</button>
+								<button 
+									class="decrypt-button-item" 
+									form-type="submit"
+									disabled="{{ bDisabledSubmit }}">解密</button>
 							</view>
 						</view>
 					</form>	
@@ -66,7 +76,7 @@
 			<!-- no message -->
 			<view wx:else>
 				<view class="main-section">
-					<view class="main-empty">感谢使用超强加密的「加密纸条」，相信我对你真的有用！</view>
+					<view class="main-empty">感谢使用 AES 256bits 端对端超强加密的「加密纸条」，相信你偶尔还是会用到的！</view>
 				</view>
 			</view>
 		</view>

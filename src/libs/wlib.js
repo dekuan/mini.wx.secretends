@@ -118,6 +118,13 @@ function getStrLen( sString, bTrim )
 	return nRet;
 }
 
+function getRandomNumber( nLowerValue, nUpperValue )
+{
+	return Math.floor( Math.random() * ( nUpperValue - nLowerValue + 1 ) + nLowerValue );
+}
+
+
+
 
 /**
  *	exports
@@ -133,5 +140,6 @@ module.exports =
 	isValidDateObject: isValidDateObject,
 	isObjectWithKeys: isObjectWithKeys,
 	trimStr: trimStr,
-	getStrLen: getStrLen
+	getStrLen: getStrLen,
+	getRandomNumber: getRandomNumber
 }

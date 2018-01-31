@@ -1,0 +1,67 @@
+/**
+ *	components/top-toast/top-toast.wxss
+ */
+.center-block
+{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+
+	position: fixed;
+    z-index: 5000;
+    width: 260rpx;
+    height: 260rpx;
+    top: 35%;
+    left: 50%;
+    margin-left: -130rpx;
+    text-align: center;
+}
+
+
+
+
+/**
+ *	top-toast
+ */
+.de-loading
+{
+	margin: 0;
+	width: 260rpx;
+	height: 260rpx;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-animation: a 1s steps(36) infinite;
+	animation: a 1s steps(36) infinite;
+	background-repeat: no-repeat;
+	background-size: 100%;
+
+	border-radius: 130rpx;
+	-webkit-box-shadow:0 0 100rpx rgba( 81, 124, 212, .8 );
+	-moz-box-shadow:0 0 100rpx rgba( 81, 124, 212, .8 );
+	box-shadow:0 0 100rpx rgba( 81, 124, 212, .8 );
+}
+.de-loading.de-loading_transparent
+{
+}
+@-webkit-keyframes a
+{
+	0%	{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	to	{
+		-webkit-transform:rotate(1turn);
+		transform:rotate(1turn);
+	}
+}
+@keyframes a
+{
+	0%	{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	to	{
+		-webkit-transform:rotate(1turn);
+		transform:rotate(1turn);
+	}
+}

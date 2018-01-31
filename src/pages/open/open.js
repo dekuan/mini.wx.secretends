@@ -8,8 +8,9 @@ var msecret		= require( '../../models/secret/CSecretEnds.js' );
 var mhint		= require( '../../models/secret/CEncryptHint.js' );
 var msign		= require( '../../models/secret/CSignature.js' );
 
-var m_oTopToast = null;
-const app		= getApp();
+var m_oTopToast 	= null;
+var m_oHappyLoading	= null;
+const app			= getApp();
 
 /**
  *	open message status
@@ -36,20 +37,17 @@ Page({
 		sPasswordHint		: '没有提示文字',
 		sMessage			: '',
 
-		bFocussPassword		: false
+		bFocussPassword		: false,
+		bDisabledSubmit		: false
 	},
 
 	onReady: function ()
 	{
 		//	获得 dialog组件
-		m_oTopToast	= this.selectComponent( "#id-top-toast" );
+		m_oTopToast		= this.selectComponent( "#id-top-toast" );
+		m_oHappyLoading	= this.selectComponent( "#id-happy-loading" );
 
 		console.log("onReady / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
-
-		//	...
-		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
-		this._initPage();
-		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
 	},
 
 	onLoad: function ( oOptions )
@@ -62,17 +60,6 @@ Page({
 		this._initPage();
 		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
 	},
-
-	onShow : function()
-	{
-		console.log("onShow / wurl.getCurrentPageArgs() = ", wurl.getCurrentPageArgs());
-
-		//	...
-		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
-		this._initPage();
-		console.log("nOpenMessageStatus = ", this.data.nOpenMessageStatus);
-	},
-
 
 	onFormOpenSubmit : function( oEvent )
 	{
@@ -102,20 +89,35 @@ Page({
 			return false;
 		}
 
-		//	...
-		sDecryptedMessage	= this._decryptMessage( sPassword );
-		if ( wlib.getStrLen( sDecryptedMessage ) > 0 )
-		{
-			this.setData({
-				nOpenMessageStatus: this.data.OPEN_MESSAGE_STATUS_READ,
-				sMessage: sDecryptedMessage
-			});
-		}
-		else
-		{
-			m_oTopToast.showTopToast( 'err', '解密失败，请输入正确的密码' );
-		}
+		//	show loading
+		m_oHappyLoading.showLoading();
+		this.setData({
+			bDisabledSubmit : true
+		});
 
+		//	...	
+		sDecryptedMessage	= this._decryptMessage( sPassword );
+		setTimeout( () =>
+		{
+			//	hide loading
+			m_oHappyLoading.hideLoading();
+			this.setData({
+				bDisabledSubmit: false
+			});
+
+			if ( wlib.getStrLen( sDecryptedMessage ) > 0 )
+			{
+				this.setData({
+					nOpenMessageStatus: this.data.OPEN_MESSAGE_STATUS_READ,
+					sMessage: sDecryptedMessage
+				});
+			}
+			else
+			{
+				m_oTopToast.showTopToast( 'err', '解密失败，请输入正确的密码' );
+			}
+		},
+		wlib.getRandomNumber( 1000, 3000 ) );
 	},
 
 

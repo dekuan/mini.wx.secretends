@@ -6,13 +6,15 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 100rpx 0 0 0;
+	padding: 113rpx 0 112rpx 0;
+	background-color: #273b7a;
 }
 .product .logo
 {
 	width: 260rpx;
 	height: 260rpx;
 	background-size: contain;
+	border-radius: 130rpx;
 }
 
 
@@ -25,7 +27,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 100rpx 0 0 0;
+	padding: 40rpx 0 0 0;
 }
 .main .main-body
 {
@@ -37,7 +39,7 @@
 	font-size: 38rpx;
 	font-weight: bold;
 	color: #273b7a;
-	padding: 10rpx 0 16rpx 0;
+	padding: 0rpx 0 16rpx 0;
 }
 .main .main-body .main-body-text
 {
