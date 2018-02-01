@@ -3,6 +3,7 @@
 //
 var wurl		= require( '../../libs/wurl.js' );
 var wlib		= require( '../../libs/wlib.js' );
+var wchar		= require( '../../libs/wchar.js' );
 var wdatetime	= require( '../../libs/wdatetime.js' );
 var msecret		= require( '../../models/secret/CSecretEnds.js' );
 var mhint		= require( '../../models/secret/CEncryptHint.js' );
@@ -75,6 +76,16 @@ Page({
 				bFocussPasswordHint: false
 			});
 			m_oTopToast.showTopToast( 'err', '请输入纸条内容，最多 128 个字符' );
+			return false;
+		}
+		if ( ! wchar.isChineseChars( sMessage ) )
+		{
+			this.setData({
+				bFocusMessage: true,
+				bFocussPassword: false,
+				bFocussPasswordHint: false
+			});
+			m_oTopToast.showTopToast( 'err', '纸条内容只能是中文、符号、英文数字符号。不能含有表情符');
 			return false;
 		}
 		if ( 0 == wlib.getStrLen( sPassword, true ) )

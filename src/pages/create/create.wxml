@@ -5,6 +5,7 @@
     <toptoast
 		id="id-top-toast"
 		message="请输入纸条内容" 
+		style="z-index:20000"
 		bind:cancelEvent="onTopToastCancel">
     </toptoast>
 
@@ -24,9 +25,7 @@
 						name="message"
 						maxlength="128"
 						show-confirm-bar="false"
-						auto-focus
 						focus="{{ bFocusMessage }}"
-						bindinput="onMessageInput"
 						/>
 				</view>
 			</view>
