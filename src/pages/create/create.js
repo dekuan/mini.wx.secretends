@@ -85,7 +85,7 @@ Page({
 				bFocussPassword: false,
 				bFocussPasswordHint: false
 			});
-			m_oTopToast.showTopToast( 'err', '纸条内容只能是中文、符号、英文数字符号。不能含有表情符');
+			m_oTopToast.showTopToast( 'err', '纸条内容不能含有表情符等其他特殊字符');
 			return false;
 		}
 		if ( 0 == wlib.getStrLen( sPassword, true ) )
@@ -106,6 +106,16 @@ Page({
 				bFocussPasswordHint: true
 			});
 			m_oTopToast.showTopToast( 'err', '请输入解密提示文字，最多 64 个字符' );
+			return false;
+		}
+		if ( ! wchar.isChineseChars( sPasswordHint ) )
+		{
+			this.setData({
+				bFocusMessage: false,
+				bFocussPassword: false,
+				bFocussPasswordHint: true
+			});
+			m_oTopToast.showTopToast( 'err', '密码提示文字不能含有表情符等其他特殊字符');
 			return false;
 		}
 

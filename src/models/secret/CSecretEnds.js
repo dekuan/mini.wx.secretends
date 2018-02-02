@@ -295,8 +295,6 @@ class CSecretEnds
 		sSource += new String( nTimestampStart );
 		sSource += ',';
 		sSource += new String( nExpireInSeconds );
-		sSource += ',';
-		sSource += wdatetime.formatDate( new Date() );
 		sSource += '..........,..........';
 
 		//	...

@@ -114,10 +114,10 @@ Page({
 			}
 			else
 			{
-				m_oTopToast.showTopToast( 'err', '解密失败，请输入正确的密码' );
+				m_oTopToast.showTopToast( 'err', '密码不正确，解密失败' );
 			}
 		},
-		wlib.getRandomNumber( 1000, 3000 ) );
+		wlib.getRandomNumber( 100, 1000 ) );
 	},
 
 

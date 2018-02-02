@@ -6,14 +6,14 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 113rpx 0 112rpx 0;
+	padding: 120rpx 0 120rpx 0;
 	background-color: #273b7a;
 }
 .product .logo
 {
 	width: 260rpx;
 	height: 260rpx;
-	background-size: contain;
+	background-size: 260rpx 260rpx;
 	border-radius: 130rpx;
 }
 

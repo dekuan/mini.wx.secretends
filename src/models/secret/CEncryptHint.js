@@ -150,9 +150,11 @@ class CEncryptHint
 		sSource	= '';
 
 		sSource += '..........,..........';
+		sSource += '..........,..........';
+		sSource += ',';
 		sSource += new String( this.m_nVersion );
 		sSource += ',';
-		sSource += wdatetime.formatDate( new Date() );
+		sSource += '..........,..........';
 		sSource += '..........,..........';
 
 		//	...

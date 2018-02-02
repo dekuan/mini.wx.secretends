@@ -13,14 +13,14 @@
 {
 	width: 420rpx;
 	height: 320rpx; 
-	background-size: cover;
+	background-size: 420rpx 320rpx;
 }
 .envelope .envelope-empty
 {
 	width: 420rpx;
-	height: 320rpx;
+	height: 336rpx;
 	color: #fff;
-	line-height: 280rpx;
+	line-height: 320rpx;
 	text-align: center;
 }
 
