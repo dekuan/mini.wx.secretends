@@ -23,7 +23,27 @@ Page({
 	{
 		bFocusMessage		: true,
 		bFocussPassword		: false,
-		bFocussPasswordHint	: false
+		bFocussPasswordHint	: false,
+
+		sPasswordHint		: '',
+
+		bPasswordHintDlgShow	: false,
+		arrPasswordHintList		: [
+			"密码排行榜上排名第一的密码",
+			"我们第一次遇见的城市名",
+			"我们第一次看的电影名",
+			"我们第一次阅读的书名",
+			"我身上的纹身图案什么含义",
+			"最难忘，爱你的那首歌",
+			"挖掘机技术哪家强",
+			"一棵藤上七个瓜，风吹雨打都不怕",
+			"啊…… 啊啊啊 ……，电影名",
+			"长江长江！我是黄河！",
+			"空气在颤抖，天空在燃烧，是啊",
+			"鸳鸯茶，鸳鸯茶，你爱我……",
+			"天王盖地虎，宝塔镇河妖",
+			"坦白从宽，抗拒从严"
+		],
 	},
 
 	onReady: function ()
@@ -38,13 +58,51 @@ Page({
 
 	onTopToastCancel: function( oEvent )
 	{
-		console.log( "onTopToastCancel", oEvent );
+		//console.log( "onTopToastCancel", oEvent );
 		m_oTopToast.hideTopToast();
 	},
 	onMessageInput: function( oEvent )
 	{
-		console.log("onMessageInput", oEvent);
+		//console.log("onMessageInput", oEvent);
 	},
+
+	/**
+	 *	show password hint
+	 */
+	onTapShowPasswordHintDlg: function( oEvent )
+	{
+		this.setData({
+			bPasswordHintDlgShow: true,
+		});
+	},
+	onTapHidePasswordHintDlg: function( oEvent )
+	{
+		this.setData({
+			bPasswordHintDlgShow: false
+		});
+	},
+	onTapPasswordHintItem: function( oEvent )
+	{
+		let nIndex;
+
+		//	...
+		nIndex	= parseInt( oEvent.currentTarget.dataset.index );
+
+		if ( nIndex >= 0 && nIndex < this.data.arrPasswordHintList.length )
+		{
+			this.setData({
+				sPasswordHint: this.data.arrPasswordHintList[ nIndex ],
+			});
+		}
+
+		this.setData({
+			bPasswordHintDlgShow: false
+		});
+
+		//	...
+		//console.log( "onTapPasswordHintItem", oEvent );
+	},
+
 
 	onFormCreateSubmit: function( oEvent )
 	{
@@ -53,7 +111,7 @@ Page({
 		var sPasswordHint;
 
 		//	...
-		console.log( "onFormCreateSubmit", oEvent );
+		//console.log( "onFormCreateSubmit", oEvent );
 
 		if ( ! wlib.isObjectWithKeys( oEvent, 'detail' ) ||
 			! wlib.isObjectWithKeys( oEvent.detail, 'value' ) ||
@@ -126,6 +184,9 @@ Page({
 			url: '/pages/done/done?' + this._encryptMessage( sMessage, sPassword, sPasswordHint )
 		});
 	},
+
+
+
 
 	/**
 	 *	@private

@@ -18,11 +18,11 @@ Page({
 
 	onShareAppMessage : function( res )
 	{
-		if ('button' === res.from )
-		{
-			// 来自页面内转发按钮
-			console.log( res.target );
-		}
+		// if ('button' === res.from )
+		// {
+		// 	// 来自页面内转发按钮
+		// 	console.log( res.target );
+		// }
 
 		return {
 			title : '关于「加密纸条」',
