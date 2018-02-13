@@ -45,7 +45,6 @@
 									placeholder-class="decrypt-input-item-placeholder"
 									maxlength="32" 
 									placeholder="请输入密码…"
-									password="true" 
 									focus="{{ bFocussPassword }}"
 									/>
 							</view>
