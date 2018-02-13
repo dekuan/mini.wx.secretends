@@ -1,0 +1,95 @@
+/**
+ *	envelope
+ */
+.envelope
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 90rpx 0 90rpx 0;
+	background-color: #273b7a;
+}
+.envelope .envelope-icon
+{
+	width: 420rpx;
+	height: 320rpx; 
+	background-size: 420rpx 320rpx;
+}
+.envelope .envelope-empty
+{
+	width: 420rpx;
+	height: 336rpx;
+	color: #fff;
+	line-height: 320rpx;
+	text-align: center;
+}
+
+
+/**
+ *	main
+ */
+.main
+{
+	padding: 20rpx 0 60rpx 0;
+}
+.main .main-body
+{
+	padding: 0 40rpx 0 40rpx;
+}
+.main .main-section
+{
+	padding: 20rpx 0 10rpx 0;
+}
+.main .main-label
+{
+	color: #273b7a;
+	font-weight: bold;
+	padding: 10rpx 0 10rpx 0;
+}
+.main .main-text
+{
+	color: #273b7a;
+	font-weight: normal;
+	padding: 10rpx 0 10rpx 0;
+}
+.main .main-empty
+{
+	color: #273b7a;
+}
+
+.main .decrypt-area
+{
+	width: 100%;
+	display: inline-flex;
+	flex-direction: row;
+}
+.main .decrypt-area .decrypt-input-area
+{
+	flex: 1;
+}
+.main .decrypt-area .decrypt-space-area
+{
+	flex: 0 0 10rpx;
+}
+.main .decrypt-area .decrypt-button-area
+{
+	flex: 0 0 140rpx;
+	padding: 20rpx 0 0 0;
+}
+.main .decrypt-area .decrypt-input-area .decrypt-input-item
+{
+	height: 90rpx;
+	border-bottom: 2px solid #273b7a;
+}
+.main .decrypt-area .decrypt-input-area .decrypt-input-item-placeholder
+{
+	color: #505b80;
+}
+.main .decrypt-area .decrypt-button-area .decrypt-button-item
+{
+	width: 140rpx;
+	height: 80rpx;
+	color: #fff;
+	font-size: 32rpx;
+	background-color: #273b7a;
+}

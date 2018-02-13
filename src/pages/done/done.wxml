@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<view class="container">
+
+	<!-- top toast -->
+    <toptoast
+		id="id-top-toast"
+		message="请输入纸条内容" 
+		bind:cancelEvent="onTopToastCancel">
+    </toptoast>
+
+	<!-- envelope -->
+	<view class="envelope">
+		<view>
+			<image
+				class="envelope-icon" 
+				src="../../resources/images/envelope.png"></image>
+		</view>
+	</view>
+
+
+	<!-- buttons -->
+	<view class="main">
+
+		<view class="main-section">
+			<view class="main-label">这是一张「加密纸条」，解密提示：</view>
+			<view class="main-text">{{ sPasswordHint }}</view>
+		</view>
+		<view style="height:120rpx;"></view>
+
+	</view>
+
+
+	<!-- footer -->
+	<view class="weui-footer weui-footer_fixed-bottom">
+		<view class="footer-buttons">
+			<button class="footer-buttons-primary" open-type="share">发送给朋友</button>
+		</view>
+		<view style="height:20rpx;"></view>
+	</view>
+
+</view>

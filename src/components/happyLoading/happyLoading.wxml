@@ -1,0 +1,7 @@
+<view class="center-block" hidden="{{ ! show }}">
+	<view>
+		<image 
+			src="{{ src }}" 
+			class="de-loading" ></image>
+	</view>
+</view>

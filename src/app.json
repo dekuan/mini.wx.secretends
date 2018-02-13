@@ -1,0 +1,55 @@
+{
+	"pages":
+	[
+		"pages/index/index",
+		"pages/create/create",
+		"pages/done/done",
+		"pages/open/open",
+		"pages/about/about"
+	],
+	"window":
+	{
+		"navigationBarBackgroundColor"	: "#273b7a",
+		"navigationBarTitleText"		: "加密纸条",
+		"navigationBarTextStyle"		: "white",
+		"backgroundColor"				: "#fff",
+		"backgroundTextStyle"			: "light",
+		"enablePullDownRefresh"			: false
+	},
+	"networkTimeout":
+	{
+		"request"		: 60000,
+		"uploadFile"	: 60000,
+		"downloadFile"	: 60000,
+		"connectSocket"	: 60000
+	},
+	"tabBar":
+	{
+		"color"				: "#F8F8F8",
+		"selectedColor"		: "#FFF",
+		"backgroundColor"	: "#273b7a",
+		"borderStyle"		: "white",
+		"position"			: "bottom",
+		"list":
+		[
+			{
+				"pagePath": "pages/index/index",
+				"text": "发送",
+				"iconPath":"resources/icons/icon_send_81x81.png",
+				"selectedIconPath": "resources/icons/icon_send_sel_81x81.png"
+			},
+			{
+				"pagePath": "pages/open/open",
+				"text": "接收",
+				"iconPath": "resources/icons/icon_receive_81x81.png",
+				"selectedIconPath": "resources/icons/icon_receive_sel_81x81.png"
+			},
+			{
+				"pagePath": "pages/about/about",
+				"text": "关于",
+				"iconPath": "resources/icons/icon_about_81x81.png",
+				"selectedIconPath": "resources/icons/icon_about_sel_81x81.png"
+			}
+		]
+	}
+}

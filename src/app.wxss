@@ -1,0 +1,25 @@
+@import "resources/style/weui.wxss";
+
+/**
+ *	app.wxss
+ */
+.container
+{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	background-color: #fff;
+}
+
+
+
+.footer-buttons
+{
+	padding: 20rpx 30rpx 20rpx 30rpx;
+}
+.footer-buttons .footer-buttons-primary
+{
+	width: 100%;
+	color: #fff;
+	background-color: #273b7a;
+}

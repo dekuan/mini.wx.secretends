@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "接收",
+	"usingComponents":
+	{
+		"toptoast": "/components/topToast/topToast",
+		"happyloading": "/components/happyLoading/happyLoading"
+	}
+}

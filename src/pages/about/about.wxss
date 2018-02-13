@@ -1,0 +1,51 @@
+/**
+ *	product
+ */
+.product
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 120rpx 0 120rpx 0;
+	background-color: #273b7a;
+}
+.product .logo
+{
+	width: 260rpx;
+	height: 260rpx;
+	background-size: 260rpx 260rpx;
+	border-radius: 130rpx;
+}
+
+
+
+/**
+ *	main
+ */
+.main
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40rpx 0 0 0;
+}
+.main .main-body
+{
+	padding: 0 40rpx 60rpx 40rpx;
+}
+.main .main-body .main-body-title
+{
+	display: block;
+	font-size: 38rpx;
+	font-weight: bold;
+	color: #273b7a;
+	padding: 0rpx 0 16rpx 0;
+}
+.main .main-body .main-body-text
+{
+	display: block;
+	font-size: 38rpx;
+	font-weight: normal;
+	color: #273b7a;
+	padding: 10rpx 0 10rpx 0;
+}

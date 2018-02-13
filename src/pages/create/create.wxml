@@ -1,0 +1,120 @@
+<!--index.wxml-->
+<view class="container">
+
+	<!-- top toast -->
+    <toptoast
+		id="id-top-toast"
+		message="请输入纸条内容" 
+		style="z-index:20000"
+		bind:cancelEvent="onTopToastCancel">
+    </toptoast>
+
+
+	<!-- main -->
+	<view class="main">
+
+		<form class="main-form" bindsubmit="onFormCreateSubmit">
+
+			<view class="main-form-section">
+				<view class="main-form-label">内容</view>
+				<view class="main-form-content">
+					<textarea 
+						class="main-form-textarea"
+						placeholder-class="main-form-textarea-placeholder"
+						placeholder="请输入纸条内容，最多 128 个字符…" 
+						name="message"
+						maxlength="128"
+						show-confirm-bar="false"
+						focus="{{ bFocusMessage }}"
+						hidden="{{ bPasswordHintDlgShow }}"
+						/>
+				</view>
+			</view>
+
+			<view class="main-form-section">
+				<view class="main-form-label">密码</view>
+				<view class="main-form-content">
+					<input 
+						name="password"
+						class="main-form-input"
+						placeholder-class="main-form-input-placeholder"
+						maxlength="32" 
+						placeholder="请输入密码，最多 32 个字符…"
+						password="true" 
+						focus="{{ bFocussPassword }}"/>
+				</view>
+			</view>
+
+			<view class="main-form-section">
+				<view class="main-form-label">解密提示</view>
+				<view class="main-form-content">
+					<input 
+						name="password_hint"
+						class="main-form-input password-hint-input"
+						placeholder-class="main-form-input-placeholder"
+						maxlength="64" 
+						placeholder="请输入解密提示文字，最多 64 个字符…" 
+						value="{{ sPasswordHint }}"
+						focus="{{ bFocussPasswordHint }}"/>
+					<view 
+						class="password-hint-button" 
+						bindtap="onTapShowPasswordHintDlg"
+						>...</view>
+				</view>
+			</view>
+
+			<view style="height:50rpx;"></view>
+
+			<!-- footer buttons -->
+			<view class="weui-footer weui-footer_fixed-bottom">
+				<view class="footer-buttons">
+					<button class="footer-buttons-primary" form-type="submit">创建加密纸条</button>
+				</view>
+				<view style="height:20rpx;"></view>
+			</view>
+
+		</form>
+
+	</view>
+
+	<view
+		class="top-view"
+		hidden="{{ ! bPasswordHintDlgShow }}"
+		>
+		<view class="space-left"></view>
+		<view 
+			class="password-hint" 
+			animation="{{ animationData }}" 
+			hidden="{{ ! bPasswordHintDlgShow }}"
+			>
+
+			<view class="password-hint-wrap">
+
+				<view class="password-hint-wrap-title">预置解密提示文字</view>
+				<view class="password-hint-wrap-list">
+
+					<scroll-view scroll-y 
+						style="height: 98%;">
+						<view 
+							class="password-hint-wrap-list-item"
+							data-index="{{ index }}"
+							wx:key="*this" 
+							wx:for="{{ arrPasswordHintList }}"
+							bindtap="onTapPasswordHintItem"
+							>☖ {{ item }}</view>
+					</scroll-view>
+
+				</view>
+				<view class="password-hint-wrap-button">
+					<button 
+						class="password-hint-wrap-button-close"
+						bindtap="onTapHidePasswordHintDlg">关闭</button>
+				</view>
+			</view>
+
+		</view>
+		<view class="space-right"></view>
+	</view>
+
+
+</view>

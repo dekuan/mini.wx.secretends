@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "纸条已加密",
+	"usingComponents":
+	{
+		"toptoast": "/components/topToast/topToast"
+	}
+}

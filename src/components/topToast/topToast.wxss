@@ -1,0 +1,45 @@
+/**
+ *	components/top-toast/top-toast.wxss
+ */
+.center-block
+{
+	z-index: 2000;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+/**
+ *	top-toast
+ */
+.top-toast
+{
+	z-index: 2000;
+	display: block;
+	position: fixed;
+	top: 0rpx;
+	left: 0rpx;
+	width: 100%;
+	min-height: 120rpx;
+	padding: 0;
+}
+.top-toast .top-toast-content
+{
+	position: relative;
+	padding: 30rpx;
+}
+.top-toast .top-toast-content .text
+{
+	width: 100%;
+	font-size: 38rpx;
+	color: #FFFFFF;
+	line-height: 58rpx;
+	border-width: 0rpx;
+	text-align: center;
+}
+
+.top-toast-ok	{ background: rgba( 3, 201, 3, 0.9 ); }
+.top-toast-wrn	{ background: rgba( 255, 153, 00, 0.9 ); }
+.top-toast-err	{ background: rgba( 237, 66, 75, 0.9 ); }
+.top-toast-def	{ background: rgba( 17, 17, 17, 0.9 ); }

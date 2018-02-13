@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "创建",
+	"usingComponents":
+	{
+		"toptoast": "/components/topToast/topToast"
+	}
+}

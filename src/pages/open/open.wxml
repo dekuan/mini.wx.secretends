@@ -1,0 +1,87 @@
+<!--index.wxml-->
+<view class="container">
+
+	<!-- top toast -->
+    <toptoast
+		id="id-top-toast"
+		message="请输入纸条内容" 
+		bind:cancelEvent="onTopToastCancel">
+    </toptoast>
+
+	<!-- happy loading -->
+	<happyloading
+		id="id-happy-loading"
+		src="../../resources/images/icon_secret_round_c.png">
+	</happyloading>
+
+
+	<!-- envelope -->
+	<view class="envelope">
+		<view wx:if="{{ OPEN_MESSAGE_STATUS_EMPTY !== nOpenMessageStatus }}">
+			<image
+				class="envelope-icon" 
+				src="../../resources/images/envelope.png"></image>
+		</view>
+		<view wx:else>
+			<view class="envelope-empty">没有消息</view>
+		</view>
+	</view>
+
+
+	<!-- buttons -->
+	<view class="main">
+
+		<view class="main-body">
+
+			<!-- have message, before decryption -->
+			<view wx:if="{{ OPEN_MESSAGE_STATUS_DECRYPT === nOpenMessageStatus }}">
+				<view class="main-section">
+					<form bindsubmit="onFormOpenSubmit">
+						<view class="decrypt-area">
+							<view class="decrypt-input-area">
+								<input 
+									name="password"
+									class="decrypt-input-item"
+									placeholder-class="decrypt-input-item-placeholder"
+									maxlength="32" 
+									placeholder="请输入密码…"
+									password="true" 
+									focus="{{ bFocussPassword }}"
+									/>
+							</view>
+							<view class="decrypt-space-area"></view>
+							<view class="decrypt-button-area">
+								<button 
+									class="decrypt-button-item" 
+									form-type="submit"
+									disabled="{{ bDisabledSubmit }}">解密</button>
+							</view>
+						</view>
+					</form>	
+				</view>
+				<view class="main-section">
+					<view class="main-label">收到一张「加密纸条」，解密提示：</view>
+					<view class="main-text">{{ sPasswordHint }}</view>
+				</view>
+			</view>
+
+			<!-- have message, after decryption successfully -->
+			<view wx:elif="{{ OPEN_MESSAGE_STATUS_READ === nOpenMessageStatus }}">
+				<view class="main-section">
+					<view class="main-label">这张「加密纸条」的内容是：</view>
+					<view class="main-text">{{ sMessage }}</view>
+				</view>
+			</view>
+
+			<!-- no message -->
+			<view wx:else>
+				<view class="main-section">
+					<view class="main-empty">感谢使用 AES 256bits 端对端超强加密的「加密纸条」，相信你偶尔还是会用到的！</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+
+</view>
