@@ -146,6 +146,7 @@ Page({
 			m_oTopToast.showTopToast( 'err', '纸条内容不能含有表情符等其他特殊字符');
 			return false;
 		}
+
 		if ( 0 == wlib.getStrLen( sPassword, true ) )
 		{
 			this.setData({
@@ -156,6 +157,17 @@ Page({
 			m_oTopToast.showTopToast( 'err', '请输入密码，最多 32 个字符' );
 			return false;
 		}
+		if ( ! wchar.isChineseChars( sPassword ) )
+		{
+			this.setData({
+				bFocusMessage: false,
+				bFocussPassword: true,
+				bFocussPasswordHint: false
+			});
+			m_oTopToast.showTopToast( 'err', '密码不能含有表情符等其他特殊字符' );
+			return false;
+		}
+
 		if ( 0 == wlib.getStrLen( sPasswordHint, true ) )
 		{
 			this.setData({

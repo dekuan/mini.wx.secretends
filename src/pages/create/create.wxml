@@ -35,12 +35,12 @@
 				<view class="main-form-label">密码</view>
 				<view class="main-form-content">
 					<input 
+						type="text"
 						name="password"
 						class="main-form-input"
 						placeholder-class="main-form-input-placeholder"
 						maxlength="32" 
 						placeholder="请输入密码，最多 32 个字符…"
-						password="true" 
 						focus="{{ bFocussPassword }}"/>
 				</view>
 			</view>
@@ -49,6 +49,7 @@
 				<view class="main-form-label">解密提示</view>
 				<view class="main-form-content">
 					<input 
+						type="text"
 						name="password_hint"
 						class="main-form-input password-hint-input"
 						placeholder-class="main-form-input-placeholder"
