@@ -1,8 +1,7 @@
 # 加密纸条
 
-<p align=center>
-<img src="https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/images/icon_secret_round_256x256.png" align=center />
-</p>
+![LOGO](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/images/icon_secret_round_256x256.png)
+
 
 ### 超强加密
 
@@ -29,4 +28,7 @@
 
 ### 关于作者
 刘其星，曾就职于 360 公司，对网络安全有浓厚的兴趣与多年的实战工作经验。有兴趣的朋友可以加我微信 18811070903 批评指正。
+
+
+
 
