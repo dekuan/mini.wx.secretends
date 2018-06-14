@@ -30,5 +30,24 @@
 刘其星，曾就职于 360 公司，对网络安全有浓厚的兴趣与多年的实战工作经验。有兴趣的朋友可以加我微信 18811070903 批评指正。
 
 
+### 开始使用
+
+![QrImage](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/screenshots/qr_secretends_860x860.jpg)
+
+
+### 软件截图
+
+![Screenshots](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/screenshots/secretends_01.png)
+
+![Screenshots](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/screenshots/secretends_02.png)
+
+![Screenshots](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/screenshots/secretends_03.png)
+
+![Screenshots](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/screenshots/secretends_04.png)
+
+![Screenshots](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/screenshots/secretends_05.png)
+
+
+
 
 
