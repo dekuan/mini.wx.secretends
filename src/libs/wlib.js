@@ -1,6 +1,6 @@
 function isNumeric( oObj )
 {
-	return ( "[object Number]" === Object.prototype.toString.call( oObj ) );
+	return ( ! isNaN( oObj ) && "[object Number]" === Object.prototype.toString.call( oObj ) );
 }
 
 function isString( oObj )
