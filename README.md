@@ -1,8 +1,7 @@
 # 加密纸条
 
-<p align=center>
-<img src="https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/images/icon_secret_round_256x256.png" align=center />
-</p>
+![LOGO](https://raw.githubusercontent.com/dekuan/mini.wx.secretends/master/src/resources/images/icon_secret_round_256x256.png)
+
 
 ### 超强加密
 
